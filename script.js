@@ -1,19 +1,18 @@
-// 🌙 Gestion du thème sombre
+// 🌙 Gestion du thème sombre avec animation
 const themeButton = document.getElementById("toggleTheme");
 
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark-mode");
-  themeButton.textContent = "☀️ Mode clair";
+function applyTheme(theme) {
+  document.body.classList.toggle("dark-mode", theme === "dark");
+  themeButton.textContent = theme === "dark" ? "☀️ Mode clair" : "🌙 Mode sombre";
+  localStorage.setItem("theme", theme);
 }
 
-themeButton.addEventListener("click", function () {
-  document.body.classList.toggle("dark-mode");
+// Appliquer le thème au chargement
+const savedTheme = localStorage.getItem("theme") || "light";
+applyTheme(savedTheme);
 
-  if (document.body.classList.contains("dark-mode")) {
-    localStorage.setItem("theme", "dark");
-    themeButton.textContent = "☀️ Mode clair";
-  } else {
-    localStorage.setItem("theme", "light");
-    themeButton.textContent = "🌙 Mode sombre";
-  }
+// Changement de thème au clic
+themeButton.addEventListener("click", () => {
+  const newTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
+  applyTheme(newTheme);
 });
