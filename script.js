@@ -1,147 +1,38 @@
-:root {
-  --primary-color: #4e54c8;
-  --secondary-color: #8f94fb;
-  --accent-color: #ff6b6b;
-  --text-color: #333;
-  --background-color: #f9f9f9;
-  --white: #fff;
+// 🌙 Gestion du thème sombre
+const themeButton = document.getElementById("toggleTheme");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-mode");
+  themeButton.textContent = "☀️ Mode clair";
 }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  line-height: 1.6;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+themeButton.addEventListener("click", function () {
+  document.body.classList.toggle("dark-mode");
 
-header {
-  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-  color: var(--white);
-  padding: 2em 1em;
-  text-align: center;
-}
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("theme", "dark");
+    themeButton.textContent = "☀️ Mode clair";
+  } else {
+    localStorage.setItem("theme", "light");
+    themeButton.textContent = "🌙 Mode sombre";
+  }
+});
 
-header h1 {
-  font-size: 2.5em;
-  margin-bottom: 1em;
-}
+// 📬 Formulaire de contact
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const form = e.target;
 
-#toggleTheme {
-  background-color: var(--accent-color);
-  color: var(--white);
-  border: none;
-  padding: 0.5em 1em;
-  border-radius: 20px;
-  cursor: pointer;
-  margin-bottom: 1em;
-}
-
-nav ul.menu {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1em;
-  list-style: none;
-}
-
-nav ul.menu li a {
-  text-decoration: none;
-  color: var(--white);
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 0.5em 1em;
-  border-radius: 20px;
-  transition: background-color 0.3s ease;
-}
-
-nav ul.menu li a:hover {
-  background-color: var(--accent-color);
-  color: var(--white);
-}
-
-main section {
-  padding: 2em;
-  margin: 2em auto;
-  max-width: 800px;
-  background-color: var(--white);
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-main section h2 {
-  margin-bottom: 1em;
-  color: var(--primary-color);
-}
-
-textarea,
-input {
-  width: 100%;
-  padding: 1em;
-  margin-top: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-button {
-  margin-top: 1em;
-  padding: 0.8em 1.5em;
-  background-color: var(--primary-color);
-  color: var(--white);
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: var(--accent-color);
-}
-
-footer {
-  text-align: center;
-  padding: 1em;
-  background-color: var(--primary-color);
-  color: var(--white);
-  margin-top: 2em;
-}
-
-/* 🌙 Thème sombre */
-body.dark-mode {
-  background-color: #1e1e1e;
-  color: #f0f0f0;
-}
-
-body.dark-mode header {
-  background: linear-gradient(to right, #222, #444);
-}
-
-body.dark-mode nav ul.menu li a {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #f0f0f0;
-}
-
-body.dark-mode nav ul.menu li a:hover {
-  background-color: #ff6b6b;
-  color: #fff;
-}
-
-body.dark-mode main section {
-  background-color: #2c2c2c;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-}
-
-body.dark-mode input,
-body.dark-mode textarea {
-  background-color: #444;
-  color: #fff;
-  border: 1px solid #666;
-}
-
-body.dark-mode button {
-  background-color: #555;
-  color: #fff;
-}
-
-body.dark-mode footer {
-  background-color: #222;
-  color: #ccc;
-}
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form),
+    headers: { Accept: "application/json" }
+  }).then(response => {
+    if (response.ok) {
+      document.getElementById("confirmation").style.display = "block";
+      form.reset();
+    } else {
+      alert("Une erreur est survenue. Veuillez réessayer.");
+    }
+  });
+});
