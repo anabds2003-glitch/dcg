@@ -1,23 +1,29 @@
 :root {
-  --primary-color: #4e54c8;
-  --secondary-color: #8f94fb;
-  --accent-color: #ff6b6b;
-  --text-color: #333;
-  --background-color: #f9f9f9;
-  --white: #fff;
+  --color-bg: #f9f9f9;
+  --color-text: #333;
+  --color-primary: #4e54c8;
+  --color-secondary: #8f94fb;
+  --color-accent: #ff6b6b;
+  --color-white: #fff;
 }
 
+/* 🌞 Thème clair */
 body {
+  margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   line-height: 1.6;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+header, main section, footer, input, textarea, button {
+  transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
 }
 
 header {
-  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-  color: var(--white);
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  color: var(--color-white);
   padding: 2em 1em;
   text-align: center;
 }
@@ -28,13 +34,14 @@ header h1 {
 }
 
 #toggleTheme {
-  background-color: var(--accent-color);
-  color: var(--white);
+  background-color: var(--color-accent);
+  color: var(--color-white);
   border: none;
   padding: 0.5em 1em;
   border-radius: 20px;
   cursor: pointer;
   margin-bottom: 1em;
+  font-size: 1em;
 }
 
 nav ul.menu {
@@ -43,11 +50,13 @@ nav ul.menu {
   flex-wrap: wrap;
   gap: 1em;
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 nav ul.menu li a {
   text-decoration: none;
-  color: var(--white);
+  color: var(--color-white);
   background-color: rgba(255, 255, 255, 0.2);
   padding: 0.5em 1em;
   border-radius: 20px;
@@ -55,22 +64,22 @@ nav ul.menu li a {
 }
 
 nav ul.menu li a:hover {
-  background-color: var(--accent-color);
-  color: var(--white);
+  background-color: var(--color-accent);
+  color: var(--color-white);
 }
 
 main section {
   padding: 2em;
   margin: 2em auto;
   max-width: 800px;
-  background-color: var(--white);
+  background-color: var(--color-white);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 main section h2 {
   margin-bottom: 1em;
-  color: var(--primary-color);
+  color: var(--color-primary);
 }
 
 textarea,
@@ -80,27 +89,29 @@ input {
   margin-top: 0.5em;
   border: 1px solid #ccc;
   border-radius: 8px;
+  font-size: 1em;
 }
 
 button {
   margin-top: 1em;
   padding: 0.8em 1.5em;
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: var(--color-primary);
+  color: var(--color-white);
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  font-size: 1em;
 }
 
 button:hover {
-  background-color: var(--accent-color);
+  background-color: var(--color-accent);
 }
 
 footer {
   text-align: center;
   padding: 1em;
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: var(--color-primary);
+  color: var(--color-white);
   margin-top: 2em;
 }
 
@@ -116,4 +127,52 @@ body.dark-mode header {
 
 body.dark-mode nav ul.menu li a {
   background-color: rgba(255, 255, 255, 0.1);
-  color: #f0f0f0
+  color: #f0f0f0;
+}
+
+body.dark-mode nav ul.menu li a:hover {
+  background-color: #ff6b6b;
+  color: #fff;
+}
+
+body.dark-mode main section {
+  background-color: #2c2c2c;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #666;
+}
+
+body.dark-mode button {
+  background-color: #555;
+  color: #fff;
+}
+
+body.dark-mode footer {
+  background-color: #222;
+  color: #ccc;
+}
+
+/* ⬅️ Bouton flottant retour à l’accueil */
+.btn-retour {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--color-accent);
+  color: white;
+  padding: 0.7em 1.2em;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.btn-retour:hover {
+  background-color: #e74c3c;
+}
