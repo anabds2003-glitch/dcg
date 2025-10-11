@@ -9,6 +9,7 @@
 <body>
   <header>
     <h1>Bienvenue sur mon espace étudiant</h1>
+    <button id="toggleTheme">🌙 Mode sombre</button>
     <nav>
       <ul class="menu">
         <li><a href="#agenda">Agenda</a></li>
@@ -43,8 +44,8 @@
     <section id="question">
       <h2>Pose une question</h2>
       <p>Tu peux poser ici une question à ton professeur ou à un camarade.</p>
-      <textarea placeholder="Écris ta question ici..." rows="5" style="width:100%;"></textarea>
-      <button>Envoyer</button>
+      <textarea name="question" placeholder="Écris ta question ici..." rows="5"></textarea>
+      <button id="sendQuestion">Envoyer</button>
     </section>
 
     <section id="contact">
@@ -68,4 +69,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
