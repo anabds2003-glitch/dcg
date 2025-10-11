@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Contact</h1>
+    <button id="toggleTheme">🌙 Mode sombre</button>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="agenda.html">Agenda</a></li>
+        <li><a href="matieres.html">Matières</a></li>
+        <li><a href="liens.html">Liens</a></li>
+        <li><a href="question.html">Question</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Formulaire de contact</h2>
+      <form id="contactForm" action="https://formspree.io/f/xblzzqpl" method="POST">
+        <input type="text" name="name" placeholder="Votre nom" required />
+        <input type="email" name="email" placeholder="Votre email" required />
+        <textarea name="message" placeholder="Votre message" required></textarea>
+        <button type="submit">Envoyer</button>
+        <p id="confirmation" style="display:none; color: green; margin-top: 1em;">
+          Merci pour votre message !
+        </p>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 - Mon Espace Étudiant</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
