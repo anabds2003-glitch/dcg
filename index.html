@@ -3,45 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mon Site Web</title>
+  <title>Mon Espace Étudiant</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Bienvenue sur mon site</h1>
+    <h1>Bienvenue sur mon espace étudiant</h1>
+    <button id="toggleTheme">🌙 Mode sombre</button>
     <nav>
-      <ul>
-        <li><a href="#accueil">Accueil</a></li>
-        <li><a href="#apropos">À propos</a></li>
+      <ul class="menu">
+        <li><a href="#agenda">Agenda</a></li>
+        <li><a href="#matieres">Matières</a></li>
+        <li><a href="#liens">Liens</a></li>
+        <li><a href="#question">Question</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section id="accueil">
-      <h2>Accueil</h2>
-      <p>Ceci est la page d'accueil de votre site web.</p>
+    <section id="agenda">
+      <h2>Agenda</h2>
+      <p>Voici ton emploi du temps ou les événements à venir.</p>
     </section>
 
-    <section id="apropos">
-      <h2>À propos</h2>
-      <p>Parlez ici de vous ou de votre projet.</p>
+    <section id="matieres">
+      <h2>Matières</h2>
+      <p>Mathématiques, Physique, Informatique, Français, Histoire-Géo…</p>
+    </section>
+
+    <section id="liens">
+      <h2>Liens utiles</h2>
+      <ul>
+        <li><a href="https://ent.univ.fr" target="_blank">ENT</a></li>
+        <li><a href="https://moodle.org" target="_blank">Moodle</a></li>
+        <li><a href="https://drive.google.com" target="_blank">Google Drive</a></li>
+      </ul>
+    </section>
+
+    <section id="question">
+      <h2>Pose une question</h2>
+      <textarea name="question" placeholder="Écris ta question ici..." rows="5"></textarea>
+      <button id="sendQuestion">Envoyer</button>
     </section>
 
     <section id="contact">
       <h2>Contact</h2>
-      <form id="contactForm">
-        <input type="text" placeholder="Votre nom" required />
-        <input type="email" placeholder="Votre email" required />
-        <textarea placeholder="Votre message" required></textarea>
+      <form id="contactForm" action="https://formspree.io/f/xblzzqpl" method="POST">
+        <input type="text" name="name" placeholder="Votre nom" required />
+        <input type="email" name="email" placeholder="Votre email" required />
+        <textarea name="message" placeholder="Votre message" required></textarea>
         <button type="submit">Envoyer</button>
+        <p id="confirmation" style="display:none; color: green; margin-top: 1em;">
+          Merci pour votre message !
+        </p>
       </form>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 - Mon Site Web</p>
+    <p>&copy; 2025 - Mon Espace Étudiant</p>
   </footer>
 
   <script src="script.js"></script>
