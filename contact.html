@@ -34,6 +34,13 @@
       color: #aaccff;
     }
 
+    body.dark-mode header,
+    body.dark-mode main,
+    body.dark-mode footer {
+      background-color: transparent;
+      color: inherit;
+    }
+
     #toggleTheme {
       background: none;
       border: none;
@@ -78,28 +85,4 @@
     </main>
 
     <footer>
-      <p>&copy; 2025 - Mon Espace Étudiant</p>
-    </footer>
-  </div>
-
-  <a href="index.html" class="btn-retour">⬅️ Accueil</a>
-
-  <script>
-    // 🌗 Thème sombre avec icône dynamique
-    const toggleTheme = document.getElementById("toggleTheme");
-
-    function updateThemeIcon() {
-      toggleTheme.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
-    }
-
-    toggleTheme.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      updateThemeIcon();
-    });
-
-    // Appliquer le thème sombre par défaut si l'utilisateur le préfère
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      document.body.classList.add("dark-mode");
-    }
-    updateThemeIcon();
-
+      <p>&copy; 2025 - Mon Espace Étudiant
