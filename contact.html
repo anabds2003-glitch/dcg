@@ -25,12 +25,16 @@
     <main>
       <section>
         <h2>Formulaire de contact</h2>
-        <form action="https://formspree.io/f/xblzzqpl" method="POST">
+        <form id="contactForm" action="https://formspree.io/f/xblzzqpl" method="POST">
           <input type="text" name="name" placeholder="Votre nom" required />
           <input type="email" name="email" placeholder="Votre email" required />
           <textarea name="message" placeholder="Votre message" required></textarea>
           <button type="submit">Envoyer</button>
         </form>
+
+        <div id="confirmationMessage" style="display:none; margin-top:2em; color:green; font-weight:bold;">
+          ✅ Merci Batista ! Ton message a bien été envoyé. Je te répondrai dès que possible.
+        </div>
       </section>
     </main>
 
@@ -40,6 +44,36 @@
   </div>
 
   <a href="index.html" class="btn-retour">⬅️ Accueil</a>
-  <script src="script.js"></script>
+
+  <script>
+    // Mode sombre
+    const toggleTheme = document.getElementById("toggleTheme");
+    toggleTheme.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+
+    // Envoi du formulaire avec message personnalisé
+    const form = document.getElementById("contactForm");
+    const confirmation = document.getElementById("confirmationMessage");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: {
+          Accept: "application/json"
+        }
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = "none";
+          confirmation.style.display = "block";
+        } else {
+          alert("❌ Une erreur est survenue. Réessaie plus tard.");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
