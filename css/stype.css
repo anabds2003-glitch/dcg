@@ -1,58 +1,183 @@
+:root {
+  --primary-color: #4e54c8;
+  --secondary-color: #8f94fb;
+  --accent-color: #ff6b6b;
+  --text-color: #333;
+  --background-color: #f9f9f9;
+  --white: #fff;
+}
+
+/* 🌞 Thème clair par défaut */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header {
-  background-color: #333;
-  color: white;
-  padding: 1em;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  color: var(--white);
+  padding: 2em 1em;
   text-align: center;
 }
 
-nav ul {
+header h1 {
+  font-size: 2.5em;
+  margin-bottom: 1em;
+}
+
+#toggleTheme {
+  background-color: var(--accent-color);
+  color: var(--white);
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 1em;
+}
+
+nav ul.menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
   list-style: none;
-  padding: 0;
 }
 
-nav ul li {
-  display: inline;
-  margin: 0 10px;
+nav ul.menu li a {
+  text-decoration: none;
+  color: var(--white);
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.5em 1em;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
 }
 
-nav ul li a {
-  color: white;
+nav ul.menu li a:hover {
+  background-color: var(--accent-color);
+  color: var(--white);
+}
+
+main section {
+  padding: 2em;
+  margin: 2em auto;
+  max-width: 800px;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+main section h2 {
+  margin-bottom: 1em;
+  color: var(--primary-color);
+}
+
+#liens ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#liens ul li {
+  margin-bottom: 0.5em;
+}
+
+#liens ul li a {
+  color: var(--accent-color);
   text-decoration: none;
 }
 
-main {
-  padding: 2em;
+#liens ul li a:hover {
+  text-decoration: underline;
 }
 
-section {
-  margin-bottom: 2em;
-}
-
-form input, form textarea {
-  display: block;
+textarea,
+input {
   width: 100%;
-  margin-bottom: 1em;
-  padding: 0.5em;
+  padding: 1em;
+  margin-top: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
 button {
-  padding: 0.5em 1em;
-  background-color: #333;
-  color: white;
+  margin-top: 1em;
+  padding: 0.8em 1.5em;
+  background-color: var(--primary-color);
+  color: var(--white);
   border: none;
+  border-radius: 8px;
   cursor: pointer;
 }
 
+button:hover {
+  background-color: var(--accent-color);
+}
+
 footer {
-  background-color: #333;
-  color: white;
   text-align: center;
   padding: 1em;
+  background-color: var(--primary-color);
+  color: var(--white);
+  margin-top: 2em;
+}
+
+/* 🌙 Thème sombre */
+body.dark-mode {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark-mode header {
+  background: linear-gradient(to right, #222, #444);
+}
+
+body.dark-mode nav ul.menu li a {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+}
+
+body.dark-mode nav ul.menu li a:hover {
+  background-color: #ff6b6b;
+  color: #fff;
+}
+
+body.dark-mode main section {
+  background-color: #2c2c2c;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #666;
+}
+
+body.dark-mode button {
+  background-color: #555;
+  color: #fff;
+}
+
+body.dark-mode footer {
+  background-color: #222;
+  color: #ccc;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  nav ul.menu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header h1 {
+    font-size: 2em;
+  }
+
+  main section {
+    margin: 1em;
+    padding: 1.5em;
+  }
 }
