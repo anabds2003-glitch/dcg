@@ -37,8 +37,9 @@
     #toggleTheme {
       background: none;
       border: none;
-      font-size: 1.5em;
+      font-size: 1.8em;
       cursor: pointer;
+      margin-left: 1em;
     }
   </style>
 </head>
@@ -46,7 +47,7 @@
   <div class="page-container">
     <header>
       <h1>Contact</h1>
-      <button id="toggleTheme" title="Changer de thème">🌙</button>
+      <button id="toggleTheme">🌙</button>
       <nav>
         <ul class="menu">
           <li><a href="index.html">Accueil</a></li>
@@ -86,7 +87,6 @@
   <script>
     // 🌗 Thème sombre avec icône dynamique
     const toggleTheme = document.getElementById("toggleTheme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
     function updateThemeIcon() {
       toggleTheme.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
@@ -98,57 +98,8 @@
     });
 
     // Appliquer le thème sombre par défaut si l'utilisateur le préfère
-    if (prefersDark) {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       document.body.classList.add("dark-mode");
-      updateThemeIcon();
     }
+    updateThemeIcon();
 
-    // 💾 Suggestion automatique des données enregistrées
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-
-    const savedName = localStorage.getItem("contactName");
-    const savedEmail = localStorage.getItem("contactEmail");
-
-    if (savedName) {
-      nameInput.value = savedName;
-      nameInput.placeholder = `Prénom (ex: ${savedName})`;
-    }
-    if (savedEmail) {
-      emailInput.value = savedEmail;
-      emailInput.placeholder = `Email (ex: ${savedEmail})`;
-    }
-
-    // 📬 Envoi du formulaire + confettis + sauvegarde
-    const form = document.getElementById("contactForm");
-    const confirmation = document.getElementById("confirmationMessage");
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const data = new FormData(form);
-      const name = nameInput.value;
-      const email = emailInput.value;
-
-      localStorage.setItem("contactName", name);
-      localStorage.setItem("contactEmail", email);
-
-      fetch(form.action, {
-        method: "POST",
-        body: data,
-        headers: {
-          Accept: "application/json"
-        }
-      }).then(response => {
-        if (response.ok) {
-          form.style.display = "none";
-          confirmation.style.display = "block";
-          launchConfetti();
-        } else {
-          alert("❌ Une erreur est survenue. Réessaie plus tard.");
-        }
-      });
-    });
-
-    function launchConfetti() {
-      confetti({
-        particle
