@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
   <div class="page-container">
@@ -33,7 +34,7 @@
         </form>
 
         <div id="confirmationMessage" style="display:none; margin-top:2em; color:green; font-weight:bold;">
-          ✅ Merci Batista ! Ton message a bien été envoyé. Je te répondrai dès que possible.
+          🎉 Merci Batista ! Ton message a bien été envoyé. Je repondrai dès que possible.
         </div>
       </section>
     </main>
@@ -52,7 +53,7 @@
       document.body.classList.toggle("dark-mode");
     });
 
-    // Envoi du formulaire avec message personnalisé
+    // Formulaire + confettis
     const form = document.getElementById("contactForm");
     const confirmation = document.getElementById("confirmationMessage");
 
@@ -69,11 +70,20 @@
         if (response.ok) {
           form.style.display = "none";
           confirmation.style.display = "block";
+          launchConfetti();
         } else {
           alert("❌ Une erreur est survenue. Réessaie plus tard.");
         }
       });
     });
+
+    function launchConfetti() {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
   </script>
 </body>
 </html>
