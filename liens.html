@@ -5,6 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Liens utiles</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+    }
+
+    header, footer {
+      background-color: #4e54c8;
+      color: white;
+      padding: 1em;
+      text-align: center;
+      position: relative;
+    }
+
+    nav ul.menu {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+      margin-top: 1em;
+    }
+
+    nav ul.menu li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      padding: 2em;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    ul {
+      padding-left: 1em;
+    }
+
+    ul li {
+      margin-bottom: 0.8em;
+    }
+
+    ul li a {
+      color: #4e54c8;
+      text-decoration: underline;
+    }
+
+    #toggleTheme {
+      background: none;
+      border: none;
+      font-size: 1.8em;
+      cursor: pointer;
+      position: absolute;
+      top: 1em;
+      right: 1em;
+    }
+
+    body.dark-mode a {
+      color: #aaccff;
+    }
+
+    body.dark-mode header,
+    body.dark-mode footer {
+      background-color: #333;
+      color: #f0f0f0;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -18,39 +94,3 @@
         <li><a href="question.html">Question</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-    </nav>
-  </header>
-
-  <main>
-    <h2>Sites utiles</h2>
-    <ul>
-      <li><a href="https://www.service-public.fr/" target="_blank">Service Public</a></li>
-      <li><a href="https://www.legifrance.gouv.fr/" target="_blank">Legifrance</a></li>
-      <li><a href="https://www.impots.gouv.fr/" target="_blank">Impôts</a></li>
-      <li><a href="https://www.igefi.fr/" target="_blank">IGEFI Bordeaux</a></li>
-    </ul>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 - Mon Espace Étudiant</p>
-  </footer>
-
-  <script>
-    const toggleTheme = document.getElementById("toggleTheme");
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") document.body.classList.add("dark-mode");
-
-    function updateThemeIcon() {
-      toggleTheme.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
-    }
-
-    toggleTheme.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-      updateThemeIcon();
-    });
-
-    updateThemeIcon();
-  </script>
-</body>
-</html>
