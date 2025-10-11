@@ -29,13 +29,22 @@
       <p>Parlez ici de vous ou de votre projet.</p>
     </section>
 
-    <form id="contactForm" action="https://formspree.io/f/xblzzqpl" method="POST">
+    <section id="contact">
       <h2>Contact</h2>
-      <form id="contactForm">
-        <input type="text" placeholder="Votre nom" required />
-        <input type="email" placeholder="Votre email" required />
-        <textarea placeholder="Votre message" required></textarea>
+      <form id="contactForm" action="https://formspree.io/f/xblzzqpl" method="POST">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" placeholder="Votre nom" required />
+
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" placeholder="Votre email" required />
+
+        <label for="message">Message :</label>
+        <textarea id="message" name="message" placeholder="Votre message" rows="5" required></textarea>
+
         <button type="submit">Envoyer</button>
+        <p id="confirmation" style="display:none; color: green; margin-top: 1em;">
+          Merci pour votre message !
+        </p>
       </form>
     </section>
   </main>
@@ -47,3 +56,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
