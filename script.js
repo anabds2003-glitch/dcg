@@ -17,22 +17,3 @@ themeButton.addEventListener("click", function () {
     themeButton.textContent = "🌙 Mode sombre";
   }
 });
-
-// 📬 Formulaire de contact
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const form = e.target;
-
-  fetch(form.action, {
-    method: "POST",
-    body: new FormData(form),
-    headers: { Accept: "application/json" }
-  }).then(response => {
-    if (response.ok) {
-      document.getElementById("confirmation").style.display = "block";
-      form.reset();
-    } else {
-      alert("Une erreur est survenue. Veuillez réessayer.");
-    }
-  });
-});
