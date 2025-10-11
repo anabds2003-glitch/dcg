@@ -6,12 +6,47 @@
   <title>Contact</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+    }
+
+    body.dark-mode input,
+    body.dark-mode textarea {
+      background-color: #2c2c2c;
+      color: #f0f0f0;
+      border: 1px solid #555;
+    }
+
+    body.dark-mode button {
+      background-color: #4e54c8;
+      color: white;
+    }
+
+    body.dark-mode a {
+      color: #aaccff;
+    }
+
+    #toggleTheme {
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div class="page-container">
     <header>
       <h1>Contact</h1>
-      <button id="toggleTheme">🌙 Mode sombre</button>
+      <button id="toggleTheme" title="Changer de thème">🌙</button>
       <nav>
         <ul class="menu">
           <li><a href="index.html">Accueil</a></li>
@@ -36,7 +71,7 @@
         </form>
 
         <div id="confirmationMessage" style="display:none; margin-top:2em; color:green; font-weight:bold;">
-          🎉 Merci ! Ton message a bien été envoyé.
+          🎉 Merci ! Ton message a bien été envoyé. Je réponds dans les meilleurs délais.
         </div>
       </section>
     </main>
@@ -49,13 +84,26 @@
   <a href="index.html" class="btn-retour">⬅️ Accueil</a>
 
   <script>
-    // Mode sombre
+    // 🌗 Thème sombre avec icône dynamique
     const toggleTheme = document.getElementById("toggleTheme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    function updateThemeIcon() {
+      toggleTheme.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+    }
+
     toggleTheme.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
+      updateThemeIcon();
     });
 
-    // Suggestion automatique des données enregistrées
+    // Appliquer le thème sombre par défaut si l'utilisateur le préfère
+    if (prefersDark) {
+      document.body.classList.add("dark-mode");
+      updateThemeIcon();
+    }
+
+    // 💾 Suggestion automatique des données enregistrées
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
 
@@ -71,7 +119,7 @@
       emailInput.placeholder = `Email (ex: ${savedEmail})`;
     }
 
-    // Envoi du formulaire + confettis + sauvegarde prénom/email
+    // 📬 Envoi du formulaire + confettis + sauvegarde
     const form = document.getElementById("contactForm");
     const confirmation = document.getElementById("confirmationMessage");
 
@@ -103,11 +151,4 @@
 
     function launchConfetti() {
       confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-    }
-  </script>
-</body>
-</html>
+        particle
