@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agenda</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ... même style que dans liens.html ... */
+  </style>
 </head>
 <body>
   <header>
@@ -20,32 +23,15 @@
       </ul>
     </nav>
   </header>
-
   <main>
     <h2>Agenda de la semaine</h2>
     <p>Retrouve ici ton planning avec les cours, devoirs et échéances.</p>
   </main>
-
   <footer>
     <p>&copy; 2025 - Mon Espace Étudiant</p>
   </footer>
-
   <script>
-    const toggleTheme = document.getElementById("toggleTheme");
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") document.body.classList.add("dark-mode");
-
-    function updateThemeIcon() {
-      toggleTheme.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
-    }
-
-    toggleTheme.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-      updateThemeIcon();
-    });
-
-    updateThemeIcon();
+    // ... même script que dans liens.html ...
   </script>
 </body>
 </html>
