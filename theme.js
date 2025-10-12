@@ -1,31 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
   const toggleThemeButton = document.getElementById("toggleTheme");
 
-  // Fonction pour appliquer le thème et mettre à jour l'icône
+  // Appliquer le thème et mettre à jour l’icône
   function applyTheme(isDark) {
     document.body.classList.toggle("dark-mode", isDark);
-    if (toggleThemeButton) {
-      toggleThemeButton.textContent = isDark ? "☀️" : "🌙";
-    }
+    toggleThemeButton.textContent = isDark ? "☀️" : "🌙";
   }
 
-  // Lecture du thème enregistré dans le navigateur
+  // Charger le thème enregistré
   const savedTheme = localStorage.getItem("theme");
-  const isDarkSaved = savedTheme === "dark";
-  applyTheme(isDarkSaved);
+  applyTheme(savedTheme === "dark");
 
-  // Écoute du clic sur le bouton pour basculer le thème
-  if (toggleThemeButton) {
-    toggleThemeButton.addEventListener("click", () => {
-      const isDark = !document.body.classList.contains("dark-mode");
-      applyTheme(isDark);
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
-  }
+  // Basculer le thème au clic
+  toggleThemeButton.addEventListener("click", () => {
+    const isDark = !document.body.classList.contains("dark-mode");
+    applyTheme(isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
 
-  // -------------------------------
-  // Calendrier interactif enrichi
-  // -------------------------------
+  // ---------------------------
+  // Calendrier interactif
+  // ---------------------------
   const monthYear = document.getElementById("monthYear");
   const calendarBody = document.getElementById("calendarBody");
   const prevMonth = document.getElementById("prevMonth");
@@ -51,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     calendarBody.innerHTML = "";
     let row = document.createElement("tr");
-    let dayIndex = (firstDay + 6) % 7;
+    let dayIndex = (firstDay + 6) % 7; // Commencer lundi
 
     for (let i = 0; i < dayIndex; i++) {
       row.appendChild(document.createElement("td"));
@@ -69,12 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const dayEvents = events.filter(ev => ev.date === cellDate);
       dayEvents.forEach((ev, index) => {
-        const evEl = document.createElement("div");
-        evEl.className = "event-badge";
-        evEl.textContent = ev.title;
-        evEl.title = "Clique pour modifier ou supprimer";
-        evEl.style.cursor = "pointer";
-        evEl.addEventListener("click", () => {
+        const badge = document.createElement("div");
+        badge.className = "event-badge";
+        badge.textContent = ev.title;
+        badge.title = "Clique pour modifier ou supprimer";
+        badge.addEventListener("click", () => {
           const action = prompt(`Modifier ou supprimer l'événement : "${ev.title}"\n\n- Pour modifier, entre un nouveau titre\n- Pour supprimer, laisse vide et clique OK`);
           if (action === null) return;
           if (action.trim() === "") {
@@ -85,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
           saveEvents();
           renderCalendar(currentDate);
         });
-        cell.appendChild(evEl);
+        cell.appendChild(badge);
       });
 
       row.appendChild(cell);
@@ -95,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     calendarBody.appendChild(row);
   }
 
+  // Soumission du formulaire
   if (eventForm) {
     eventForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -110,23 +105,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (prevMonth) {
-    prevMonth.addEventListener("click", () => {
-      if (currentDate.getFullYear() > 2025 || currentDate.getMonth() > 8) {
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        renderCalendar(currentDate);
-      }
-    });
-  }
+  // Navigation mois précédent
+  prevMonth.addEventListener("click", () => {
+    if (currentDate.getFullYear() > 2025 || currentDate.getMonth() > 8) {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      renderCalendar(currentDate);
+    }
+  });
 
-  if (nextMonth) {
-    nextMonth.addEventListener("click", () => {
-      if (currentDate.getFullYear() < 2026 || currentDate.getMonth() < 7) {
-        currentDate.setMonth(currentDate.getMonth() + 1);
-        renderCalendar(currentDate);
-      }
-    });
-  }
+  // Navigation mois suivant
+  nextMonth.addEventListener("click", () => {
+    if (currentDate.getFullYear() < 2026 || currentDate.getMonth() < 7) {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      renderCalendar(currentDate);
+    }
+  });
 
   renderCalendar(currentDate);
 });
