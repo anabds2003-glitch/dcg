@@ -8,19 +8,6 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.page-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex: 1;
-  padding: 2em;
-  max-width: 800px;
-  margin: auto;
-}
-
 header, footer {
   padding: 1em;
   text-align: center;
@@ -31,7 +18,7 @@ footer {
   color: white;
 }
 
-/* 🌐 Menu glissant */
+/* 🍔 Menu burger */
 #burger {
   display: none;
   background: none;
@@ -43,6 +30,7 @@ footer {
   z-index: 1001;
 }
 
+/* 🌐 Menu glissant */
 .menu {
   position: fixed;
   top: 0;
