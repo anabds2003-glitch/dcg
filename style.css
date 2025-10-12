@@ -7,20 +7,17 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* 🧭 En-tête + menu fusionnés */
 header {
   background: linear-gradient(to right, #4e54c8, #8f94fb);
   color: white;
-  padding: 2em 1em 1em;
+  padding: 2em 1em 0.5em;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   position: relative;
 }
 
 header h1 {
   margin: 0;
-  font-size: 2.2em;
-  letter-spacing: 1px;
+  font-size: 2em;
 }
 
 #toggleTheme {
@@ -34,10 +31,8 @@ header h1 {
   color: white;
 }
 
-/* 🧭 Menu horizontal intégré */
 nav {
   background: transparent;
-  box-shadow: none;
 }
 
 .menu {
@@ -65,11 +60,10 @@ nav {
 }
 
 .menu a.active {
-  background-color: #ffffff;
+  background-color: white;
   color: #4e54c8;
 }
 
-/* 📄 Contenu principal */
 main {
   padding: 2em;
   max-width: 800px;
@@ -78,61 +72,8 @@ main {
 
 main h2 {
   color: #4e54c8;
-  font-size: 1.8em;
-  margin-bottom: 0.5em;
 }
 
-main p, main li {
-  font-size: 1.1em;
-  line-height: 1.6;
-}
-
-/* 📊 Tableau */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1em;
-}
-
-th, td {
-  border: 1px solid #ccc;
-  padding: 0.8em;
-  text-align: left;
-}
-
-thead {
-  background-color: #8f94fb;
-  color: white;
-}
-
-/* 📝 Formulaires */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  margin-top: 1em;
-}
-
-input, textarea, button {
-  font-size: 1em;
-  padding: 0.8em;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-button {
-  background-color: #4e54c8;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-button:hover {
-  background-color: #3c42a0;
-}
-
-/* 🦶 Pied de page */
 footer {
   background-color: #4e54c8;
   color: white;
@@ -149,7 +90,6 @@ body.dark-mode {
 
 body.dark-mode header {
   background: linear-gradient(to right, #2c2c2c, #3c3c3c);
-  color: #f0f0f0;
 }
 
 body.dark-mode .menu a {
@@ -168,17 +108,4 @@ body.dark-mode .menu a.active {
 
 body.dark-mode footer {
   background-color: #333;
-  color: #f0f0f0;
-}
-
-/* 📱 Responsive */
-@media (max-width: 600px) {
-  .menu {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  main {
-    padding: 1em;
-  }
 }
