@@ -21,15 +21,19 @@ if (toggleTheme) {
 
 updateThemeIcon();
 
-// 🍔 Menu glissant + overlay + accessibilité
+// 🍔 Menu burger + overlay + accessibilité + icône animée
 const burger = document.getElementById("burger");
 const menu = document.getElementById("menu");
 const overlay = document.getElementById("overlay");
+const burgerIcon = document.getElementById("burger-icon");
 
 function toggleMenu(open) {
   menu.classList.toggle("open", open);
   overlay.classList.toggle("show", open);
   burger.setAttribute("aria-expanded", open);
+  if (burgerIcon) {
+    burgerIcon.textContent = open ? "✖️" : "☰";
+  }
 }
 
 if (burger && menu && overlay) {
