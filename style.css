@@ -1,112 +1,83 @@
-/* --- Cadrans / cartes agrandis pour Contact et Question --- */
-.form-card,
-.card {
-  max-width: 900px;
-  width: 100%;
-  margin: 1.25rem auto;
-  padding: 1.25rem 1.5rem;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.96);
-  box-shadow: 0 8px 24px rgba(18,22,40,0.06);
-  box-sizing: border-box;
+/* FORCER cadrans / cartes agrandis (section finale, placé après les autres règles) */
+body .form-card,
+body .card {
+  max-width: 920px !important;
+  width: calc(100% - 3rem) !important;
+  margin: 1.6rem auto !important;
+  padding: 1.6rem 2rem !important;
+  border-radius: 14px !important;
+  background: rgba(255,255,255,0.98) !important;
+  box-shadow: 0 14px 34px rgba(18,22,40,0.08) !important;
+  box-sizing: border-box !important;
 }
 
-/* Variante sombre */
+/* Variante sombre forcée */
 body.dark-mode .form-card,
 body.dark-mode .card {
-  background: rgba(24,24,28,0.48);
-  color: #eaf2ff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+  background: rgba(24,24,28,0.52) !important;
+  color: #eaf2ff !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.45) !important;
 }
 
-/* Titres et labels */
-.form-card h2,
-.card h2 {
-  margin: 0 0 0.75rem 0;
-  font-size: 1.35rem;
-  line-height: 1.2;
+/* Inputs et textarea agrandis forcés */
+body .form-card input[type="text"],
+body .form-card input[type="email"],
+body .form-card textarea,
+body .card input[type="text"],
+body .card input[type="email"],
+body .card textarea {
+  font-size: 1.08rem !important;
+  padding: 1.05rem 1.1rem !important;
+  border-radius: 12px !important;
+  border: 1px solid #cfcfd6 !important;
+  background: transparent !important;
+  color: inherit !important;
 }
 
-.form-card label,
-.card label {
-  display: block;
-  margin: 0.35rem 0 0.5rem 0;
-  font-weight: 600;
-  font-size: 0.98rem;
+/* Hauteur du textarea */
+body .form-card textarea,
+body .card textarea {
+  min-height: 180px !important;
+  resize: vertical !important;
 }
 
-/* Inputs et textarea plus grands et plus lisibles */
-.form-card input[type="text"],
-.form-card input[type="email"],
-.form-card textarea,
-.card input[type="text"],
-.card input[type="email"],
-.card textarea {
-  width: 100%;
-  font-size: 1.05rem;
-  padding: 0.95rem 1rem;
-  border-radius: 10px;
-  border: 1px solid #d0d0d6;
-  box-sizing: border-box;
-  background: transparent;
-  color: inherit;
+/* Boutons */
+body .form-card button,
+body .card button {
+  padding: 1rem 1.4rem !important;
+  font-size: 1.06rem !important;
+  border-radius: 12px !important;
 }
 
-/* Hauteur du textarea augmentée */
-.form-card textarea,
-.card textarea {
-  min-height: 160px;
-  resize: vertical;
+/* Layout des champs côte à côte (bureau) */
+body .form-row {
+  display: flex !important;
+  gap: 1rem !important;
+  align-items: flex-start !important;
+  margin-bottom: 1.1rem !important;
 }
 
-/* Boutons plus visibles */
-.form-card button,
-.card button {
-  padding: 0.95rem 1.25rem;
-  font-size: 1.05rem;
-  border-radius: 10px;
-  cursor: pointer;
+body .form-row .col {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
 }
 
-/* Layout des champs côte à côte */
-.form-row {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-}
-
-.form-row .col {
-  flex: 1 1 0;
-  min-width: 0;
-}
-
-/* Séparation et espacement interne */
-.form-card .form-row + label,
-.card .form-row + label {
-  margin-top: 0.5rem;
-}
-
-/* Ajustements pour petits écrans */
+/* Mobile */
 @media (max-width: 720px) {
-  .form-card,
-  .card {
-    padding: 1rem;
-    margin: 0.75rem;
-    border-radius: 10px;
+  body .form-card,
+  body .card {
+    padding: 1.1rem !important;
+    margin: 0.8rem !important;
+    border-radius: 10px !important;
+    width: calc(100% - 1.6rem) !important;
   }
 
-  .form-card textarea,
-  .card textarea {
-    min-height: 140px;
+  body .form-card textarea,
+  body .card textarea {
+    min-height: 150px !important;
   }
 
-  .form-row {
-    flex-direction: column;
-  }
-
-  .form-card h2,
-  .card h2 {
-    font-size: 1.15rem;
+  body .form-row {
+    flex-direction: column !important;
   }
 }
