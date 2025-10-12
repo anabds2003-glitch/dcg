@@ -5,37 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
   <header>
     <h1>Contact</h1>
     <button id="toggleTheme" aria-label="Changer le thème">🌙</button>
+    <button id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">☰</button>
+    <div id="overlay" class="overlay"></div>
     <nav>
-      <ul class="menu">
+      <ul class="menu" id="menu">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="agenda.html">Agenda</a></li>
         <li><a href="matieres.html">Matières</a></li>
         <li><a href="liens.html">Liens</a></li>
         <li><a href="question.html">Question</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
     <section>
-      <h2>Formulaire de contact</h2>
-      <form id="contactForm" action="https://formspree.io/f/xblzzqpl" method="POST">
-        <input type="hidden" name="_subject" value="Nouveau message depuis le formulaire de contact" />
-        <input type="text" id="name" name="name" placeholder="Votre prénom" aria-label="Prénom" required />
-        <input type="email" id="email" name="email" placeholder="Votre email" aria-label="Email" required />
-        <textarea name="message" placeholder="Votre message" aria-label="Message" required></textarea>
-        <button type="submit" aria-label="Envoyer le message">Envoyer</button>
+      <h2>Me contacter</h2>
+      <form>
+        <input type="text" placeholder="Votre nom" required />
+        <input type="email" placeholder="Votre email" required />
+        <textarea placeholder="Votre message" required></textarea>
+        <button type="submit">Envoyer</button>
       </form>
-
-      <div id="confirmationMessage" style="display:none; margin-top:2em; color:green; font-weight:bold;">
-        🎉 Merci ! Ton message a bien été envoyé. Je réponds dans les meilleurs délais.
-      </div>
     </section>
   </main>
 
@@ -43,47 +40,6 @@
     <p>&copy; 2025 - Mon Espace Étudiant</p>
   </footer>
 
-  <a href="index.html" class="btn-retour">⬅️ Accueil</a>
-
   <script src="theme.js"></script>
-  <script>
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const savedName = localStorage.getItem("contactName");
-    const savedEmail = localStorage.getItem("contactEmail");
-
-    if (savedName) {
-      nameInput.value = savedName;
-      nameInput.placeholder = `Prénom (ex: ${savedName})`;
-    }
-    if (savedEmail) {
-      emailInput.value = savedEmail;
-      emailInput.placeholder = `Email (ex: ${savedEmail})`;
-    }
-
-    const form = document.getElementById("contactForm");
-    const confirmation = document.getElementById("confirmationMessage");
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const data = new FormData(form);
-      localStorage.setItem("contactName", nameInput.value);
-      localStorage.setItem("contactEmail", emailInput.value);
-
-      fetch(form.action, {
-        method: "POST",
-        body: data,
-        headers: { Accept: "application/json" }
-      }).then(response => {
-        if (response.ok) {
-          form.style.display = "none";
-          confirmation.style.display = "block";
-          confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-        } else {
-          alert("❌ Une erreur est survenue. Réessaie plus tard.");
-        }
-      });
-    });
-  </script>
 </body>
 </html>
