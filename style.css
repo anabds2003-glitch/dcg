@@ -57,11 +57,13 @@ body.dark-mode .calendar-header button {
 
 .calendar th, .calendar td {
   width: 14.28%;
-  height: 50px;
-  text-align: center;
+  height: 70px;
+  text-align: left;
+  vertical-align: top;
   padding: 0.5rem;
   border: 1px solid #d2d2d2;
   transition: background-color 0.2s ease;
+  position: relative;
 }
 
 .calendar td:hover {
@@ -78,6 +80,95 @@ body.dark-mode .calendar td {
   border-color: #444;
 }
 
+.day-number {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+/* Badge événement dans les cases */
+.event-badge {
+  background-color: #4e54c8;
+  color: white;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-top: 4px;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.event-badge:hover {
+  background-color: #3c42a0;
+}
+
+body.dark-mode .event-badge {
+  background-color: #3b3f73;
+  color: #aaccff;
+}
+
+body.dark-mode .event-badge:hover {
+  background-color: #2e325d;
+}
+
+/* Formulaire d’ajout d’événement */
+.event-form {
+  margin-top: 2rem;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+body.dark-mode .event-form {
+  background-color: #2a2a2a;
+  color: #e9eefb;
+}
+
+.event-form h4 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.event-form input[type="text"],
+.event-form input[type="date"],
+.event-form button {
+  font-size: 1rem;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.event-form button {
+  background-color: #4e54c8;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.event-form button:hover {
+  background-color: #3c42a0;
+}
+
+body.dark-mode .event-form input,
+body.dark-mode .event-form button {
+  background-color: #1e1e1e;
+  color: #e9eefb;
+  border-color: #444;
+}
+
+body.dark-mode .event-form button:hover {
+  background-color: #2e325d;
+}
+
 /* Responsive calendrier */
 @media (max-width: 720px) {
   .calendar-header h4 {
@@ -92,5 +183,16 @@ body.dark-mode .calendar td {
   .calendar th, .calendar td {
     padding: 0.4rem;
     font-size: 0.85rem;
+  }
+
+  .event-badge {
+    font-size: 0.7rem;
+    padding: 2px 4px;
+  }
+
+  .event-form input,
+  .event-form button {
+    font-size: 0.9rem;
+    padding: 0.5rem;
   }
 }
