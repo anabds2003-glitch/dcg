@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Question</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -26,12 +26,27 @@
   </header>
 
   <main>
-    <h2>Formulaire de question</h2>
-    <form>
-      <input type="text" placeholder="Votre question" required />
-      <textarea placeholder="Détaillez votre demande" required></textarea>
-      <button type="submit">Envoyer</button>
-    </form>
+    <div class="form-card">
+      <h2>Formulaire de question</h2>
+
+      <form>
+        <div class="form-row">
+          <div class="col">
+            <label for="subject">Sujet</label>
+            <input id="subject" name="subject" type="text" placeholder="Ex : Doute sur l'exercice 3" required />
+          </div>
+          <div class="col">
+            <label for="class">Matière</label>
+            <input id="class" name="class" type="text" placeholder="Ex : Comptabilité" />
+          </div>
+        </div>
+
+        <label for="details">Détails</label>
+        <textarea id="details" name="details" placeholder="Explique ton problème en détail..." required></textarea>
+
+        <button type="submit">Envoyer la question</button>
+      </form>
+    </div>
   </main>
 
   <footer>
