@@ -111,8 +111,14 @@
     function launchConfetti() {
       const canvas = document.getElementById("confetti");
       const ctx = canvas.getContext("2d");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
 
       const confettiCount = 150;
       const confetti = [];
@@ -157,8 +163,13 @@
         });
       }
 
-      // ✅ Lancement de l’animation ici
-      setInterval(drawConfetti, 20);
+      const interval = setInterval(drawConfetti, 20);
+
+      // ⏱️ Arrêt automatique après 5 secondes
+      setTimeout(() => {
+        clearInterval(interval);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }, 5000);
     }
   </script>
 </body>
