@@ -140,4 +140,25 @@
           ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 2);
           ctx.stroke();
         });
-        updateConf
+        updateConfetti();
+      }
+
+      function updateConfetti() {
+        confetti.forEach(c => {
+          c.tiltAngle += c.tiltAngleIncrement;
+          c.y += (Math.cos(c.d) + 3 + c.r / 2) / 2;
+          c.x += Math.sin(c.d);
+          c.tilt = Math.sin(c.tiltAngle) * 15;
+
+          if (c.y > canvas.height) {
+            c.y = -10;
+            c.x = Math.random() * canvas.width;
+          }
+        });
+      }
+
+      setInterval(drawConfetti, 20);
+    }
+  </script>
+</body>
+</html>
