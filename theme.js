@@ -3,12 +3,14 @@ const savedTheme = localStorage.getItem("theme");
 
 if (savedTheme === "dark") {
   document.body.classList.add("dark-mode");
+  toggleTheme.textContent = "☀️";
 }
 
 toggleTheme.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
-  localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-  toggleTheme.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+  const isDark = document.body.classList.contains("dark-mode");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+  toggleTheme.textContent = isDark ? "☀️" : "🌙";
 });
 
 const burger = document.getElementById("burger");
