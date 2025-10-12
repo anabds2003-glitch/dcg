@@ -10,7 +10,7 @@ html, body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* 📄 Contenu principal */
+/* 📄 Contenu principal qui pousse le footer vers le bas */
 main {
   flex: 1;
   padding: 2em;
@@ -130,12 +130,13 @@ button:hover {
   background-color: #3c42a0;
 }
 
-/* 🦶 Pied de page */
+/* 🦶 Pied de page toujours en bas */
 footer {
   background-color: #4e54c8;
   color: white;
   text-align: center;
   padding: 1em;
+  flex-shrink: 0;
 }
 
 /* 🌙 Thème sombre */
