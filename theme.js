@@ -1,22 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleTheme = document.getElementById("toggleTheme");
+  const toggleThemeButton = document.getElementById("toggleTheme");
 
-  // Appliquer le thème enregistré
-  const savedTheme = localStorage.getItem("theme");
-  const isDarkSaved = savedTheme === "dark";
-  if (isDarkSaved) {
-    document.body.classList.add("dark-mode");
+  // Fonction pour appliquer le thème et mettre à jour l'icône
+  function applyTheme(isDark) {
+    document.body.classList.toggle("dark-mode", isDark);
+    if (toggleThemeButton) {
+      toggleThemeButton.textContent = isDark ? "☀️" : "🌙";
+    }
   }
 
-  // Mettre à jour l'icône du bouton
-  if (toggleTheme) {
-    toggleTheme.textContent = isDarkSaved ? "☀️" : "🌙";
+  // Lecture du thème enregistré dans le navigateur
+  const savedTheme = localStorage.getItem("theme");
+  const isDarkSaved = savedTheme === "dark";
+  applyTheme(isDarkSaved);
 
-    toggleTheme.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      const isDark = document.body.classList.contains("dark-mode");
+  // Écoute du clic sur le bouton pour basculer le thème
+  if (toggleThemeButton) {
+    toggleThemeButton.addEventListener("click", () => {
+      const isDark = !document.body.classList.contains("dark-mode");
+      applyTheme(isDark);
       localStorage.setItem("theme", isDark ? "dark" : "light");
-      toggleTheme.textContent = isDark ? "☀️" : "🌙";
     });
   }
 });
