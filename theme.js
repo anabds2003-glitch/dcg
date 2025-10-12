@@ -1,5 +1,3 @@
-// theme.js
-
 const toggleTheme = document.getElementById("toggleTheme");
 const savedTheme = localStorage.getItem("theme");
 
