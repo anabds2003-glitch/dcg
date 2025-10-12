@@ -1,36 +1,122 @@
-/* 📐 Structure de base pour fixer le footer */
+/* Layout de base : footer collé en bas, contenu qui pousse */
 html, body {
   height: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', system-ui, -apple-system, "Helvetica Neue", Arial;
   background: linear-gradient(to right, #fdfbfb, #ebedee);
   color: #333;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* 📄 Contenu principal qui pousse le footer vers le bas */
+/* Contenu principal qui prend l'espace disponible */
 main {
-  flex: 1;
+  flex: 1 0 auto;
   padding: 2em;
-  max-width: 800px;
-  margin: auto;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-main h2 {
+/* En-tête et menu */
+header {
+  background: linear-gradient(to right, #4e54c8, #8f94fb);
+  color: #fff;
+  padding: 1.5rem 1rem 0.75rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.header-top h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 1.1;
+}
+
+/* Menu */
+nav { margin-top: 0.75rem; }
+
+.menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem;
+  box-sizing: border-box;
+}
+
+.menu a {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.45rem 0.85rem;
+  border-radius: 20px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.menu a:hover,
+.menu a:focus {
+  background-color: rgba(255,255,255,0.95);
+  color: #4e54c8;
+  outline: none;
+}
+
+.menu a.active {
+  background-color: #fff;
   color: #4e54c8;
 }
 
+/* Bouton thème fixe en haut à droite — visible sur tous les fonds */
+#toggleTheme {
+  position: fixed;
+  top: 0.9rem;
+  right: 0.9rem;
+  z-index: 2000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  background: rgba(0,0,0,0.18);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  border-radius: 0.6rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.12s ease;
+}
+
+#toggleTheme:hover,
+#toggleTheme:focus {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-1px);
+  outline: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+/* Icône couleur pour le thème sombre */
+body.dark-mode #toggleTheme {
+  color: #aaccff;
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(170,204,255,0.12);
+}
+
+/* Tableaux */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1em;
+  margin-top: 1rem;
 }
 
 th, td {
-  border: 1px solid #ccc;
-  padding: 0.8em;
+  border: 1px solid #d2d2d2;
+  padding: 0.75rem;
   text-align: left;
 }
 
@@ -39,142 +125,102 @@ thead {
   color: white;
 }
 
-/* 🧭 En-tête + menu */
-header {
-  background: linear-gradient(to right, #4e54c8, #8f94fb);
-  color: white;
-  padding: 2em 1em 0.5em;
-  text-align: center;
-}
-
-.header-top h1 {
-  margin: 0;
-  font-size: 2em;
-}
-
-nav {
-  margin-top: 1em;
-}
-
-.menu {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1em;
-  list-style: none;
-  margin: 0;
-  padding: 1em;
-}
-
-.menu a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  padding: 0.5em 1em;
-  border-radius: 20px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.menu a:hover {
-  background-color: white;
-  color: #4e54c8;
-}
-
-.menu a.active {
-  background-color: white;
-  color: #4e54c8;
-}
-
-/* 🌙 Bouton thème sombre fixé */
-#toggleTheme {
-  position: fixed;
-  top: 1em;
-  right: 1em;
-  z-index: 1000;
-  background: none;
-  border: none;
-  font-size: 1.5em;
-  cursor: pointer;
-  color: white;
-  transition: color 0.3s ease;
-}
-
-body.dark-mode #toggleTheme {
-  color: #aaccff;
-}
-
-/* 📝 Formulaires */
+/* Formulaires */
 form {
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  margin-top: 1em;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 input, textarea, button {
-  font-size: 1em;
-  padding: 0.8em;
-  border: 1px solid #ccc;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border: 1px solid #cfcfcf;
   border-radius: 8px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+input:focus, textarea:focus, button:focus {
+  outline: 3px solid rgba(78,84,200,0.18);
 }
 
 button {
   background-color: #4e54c8;
-  color: white;
+  color: #fff;
   border: none;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.2s ease;
+  padding: 0.75rem 1rem;
+  align-self: start;
 }
 
 button:hover {
   background-color: #3c42a0;
 }
 
-/* 🦶 Pied de page toujours en bas */
+/* Footer collé en bas et adaptatif */
 footer {
-  background-color: #4e54c8;
-  color: white;
-  text-align: center;
-  padding: 1em;
   flex-shrink: 0;
+  background-color: #4e54c8;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-/* 🌙 Thème sombre */
+/* Thème sombre global */
 body.dark-mode {
-  background: linear-gradient(to right, #1e1e1e, #2c2c2c);
-  color: #f0f0f0;
+  background: linear-gradient(to right, #171717, #2b2b2b);
+  color: #e9eefb;
 }
 
 body.dark-mode header {
-  background: linear-gradient(to right, #2c2c2c, #3c3c3c);
+  background: linear-gradient(to right, #222428, #3b3e46);
+}
+
+body.dark-mode thead {
+  background-color: #3b3f73;
+}
+
+body.dark-mode th, body.dark-mode td {
+  border-color: #444;
 }
 
 body.dark-mode .menu a {
-  color: #aaccff;
+  color: #cfe6ff;
 }
 
 body.dark-mode .menu a:hover {
   background-color: #aaccff;
-  color: #1e1e1e;
-}
-
-body.dark-mode .menu a.active {
-  background-color: #4e54c8;
-  color: white;
+  color: #101010;
 }
 
 body.dark-mode footer {
-  background-color: #333;
+  background-color: #111;
 }
 
-/* 📱 Responsive */
-@media (max-width: 600px) {
-  .menu {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  main {
-    padding: 1em;
-  }
+/* Accessibilité : contraste et taille */
+@media (prefers-contrast: high) {
+  .menu a { font-weight: 800; }
+  #toggleTheme { border-width: 1.5px; }
 }
+
+/* Responsive */
+@media (max-width: 720px) {
+  .header-top h1 { font-size: 1.35rem; }
+  #toggleTheme { width: 2.4rem; height: 2.4rem; font-size: 1.05rem; }
+  main { padding: 1rem; }
+  .menu { gap: 0.4rem; padding: 0.5rem; }
+}
+
+/* Petit rappel : s'assurer que le HTML suit cette structure :
+   <body>
+     <button id="toggleTheme">...</button>
+     <header>...</header>
+     <main>...</main>
+     <footer>...</footer>
+   </body>
+*/
