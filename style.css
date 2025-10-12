@@ -4,6 +4,7 @@ body {
   font-family: sans-serif;
   background-color: #f9f9f9;
   color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header, footer {
@@ -42,12 +43,10 @@ nav {
   display: none;
   background: none;
   border: none;
-  font-size: 1.2em;
+  font-size: 1.8em;
   color: #4e54c8;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
+  z-index: 1001;
 }
 
 #burger-icon {
@@ -66,7 +65,10 @@ nav {
   }
 
   #burger {
-    display: flex;
+    display: block;
+    position: absolute;
+    top: 1em;
+    right: 1em;
   }
 
   .menu {
@@ -104,4 +106,22 @@ nav {
     opacity: 1;
     visibility: visible;
   }
+}
+
+/* Dark mode */
+body.dark-mode {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark-mode nav {
+  background-color: #222;
+}
+
+body.dark-mode .menu a {
+  color: #aaccff;
+}
+
+body.dark-mode footer {
+  background-color: #333;
 }
