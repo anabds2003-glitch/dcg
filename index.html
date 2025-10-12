@@ -9,7 +9,7 @@
 <body>
   <header>
     <h1>Bienvenue sur mon espace étudiant</h1>
-    <button id="toggleTheme">🌙</button>
+    <button id="toggleTheme" aria-label="Changer le thème">🌙</button>
     <nav>
       <ul class="menu">
         <li><a href="agenda.html">Agenda</a></li>
@@ -29,22 +29,6 @@
     <p>&copy; 2025 - Mon Espace Étudiant</p>
   </footer>
 
-  <script>
-    const toggleTheme = document.getElementById("toggleTheme");
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") document.body.classList.add("dark-mode");
-
-    function updateThemeIcon() {
-      toggleTheme.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
-    }
-
-    toggleTheme.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-      updateThemeIcon();
-    });
-
-    updateThemeIcon();
-  </script>
+  <script src="theme.js"></script>
 </body>
 </html>
