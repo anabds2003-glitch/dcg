@@ -10,8 +10,10 @@
   <header>
     <h1>Matières du DCG</h1>
     <button id="toggleTheme" aria-label="Changer le thème">🌙</button>
-    <nav>
-      <ul class="menu">
+    <button id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">☰</button>
+    <div id="overlay" class="overlay"></div>
+    <nav id="menu" class="menu">
+      <ul>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="agenda.html">Agenda</a></li>
         <li><a href="matieres.html" class="active">Matières</a></li>
@@ -23,11 +25,10 @@
   </header>
 
   <main>
-    <p>Voici les unités d’enseignement du DCG :</p>
     <ul class="liste-matieres">
       <li>UE1 : Introduction au droit</li>
       <li>UE2 : Économie</li>
-      <li>UE3 : Systèmes d'information de gestion</li>
+      <li>UE3 : Systèmes d'information</li>
       <li>UE4 : Comptabilité</li>
       <li>UE5 : Finance d’entreprise</li>
       <li>UE6 : Droit des sociétés</li>
