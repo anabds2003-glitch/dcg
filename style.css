@@ -1,83 +1,364 @@
-/* FORCER cadrans / cartes agrandis (section finale, placé après les autres règles) */
-body .form-card,
-body .card {
-  max-width: 920px !important;
-  width: calc(100% - 3rem) !important;
-  margin: 1.6rem auto !important;
-  padding: 1.6rem 2rem !important;
-  border-radius: 14px !important;
-  background: rgba(255,255,255,0.98) !important;
-  box-shadow: 0 14px 34px rgba(18,22,40,0.08) !important;
-  box-sizing: border-box !important;
+/* ---------------------------
+   Style global et layout
+   --------------------------- */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', system-ui, -apple-system, "Helvetica Neue", Arial;
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
+  color: #333;
+  transition: background 0.3s ease, color 0.3s ease;
+  box-sizing: border-box;
 }
 
-/* Variante sombre forcée */
+*, *::before, *::after { box-sizing: inherit; }
+
+/* Contenu principal qui pousse le footer vers le bas */
+main {
+  flex: 1 0 auto;
+  padding: 2em;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---------------------------
+   En-tête et menu
+   --------------------------- */
+header {
+  background: linear-gradient(to right, #4e54c8, #8f94fb);
+  color: #fff;
+  padding: 1.5rem 1rem 0.75rem;
+  text-align: center;
+}
+
+.header-top h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 1.1;
+}
+
+nav { margin-top: 0.75rem; }
+
+.menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem;
+}
+
+.menu a {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.45rem 0.85rem;
+  border-radius: 20px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.menu a:hover,
+.menu a:focus {
+  background-color: rgba(255,255,255,0.95);
+  color: #4e54c8;
+  outline: none;
+}
+
+.menu a.active {
+  background-color: #fff;
+  color: #4e54c8;
+}
+
+/* ---------------------------
+   Bouton thème sombre fixé
+   --------------------------- */
+#toggleTheme {
+  position: fixed;
+  top: 0.9rem;
+  right: 0.9rem;
+  z-index: 2000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  background: rgba(0,0,0,0.18);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  border-radius: 0.6rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.12s ease;
+}
+
+#toggleTheme:hover,
+#toggleTheme:focus {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-1px);
+  outline: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+body.dark-mode #toggleTheme {
+  color: #aaccff;
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(170,204,255,0.12);
+}
+
+/* ---------------------------
+   Tableaux
+   --------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  border: 1px solid #d2d2d2;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+thead {
+  background-color: #8f94fb;
+  color: white;
+}
+
+/* ---------------------------
+   Formulaires généraux
+   --------------------------- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+input, textarea, button {
+  font-size: 1rem;
+  padding: 0.75rem;
+  border: 1px solid #cfcfcf;
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+input:focus, textarea:focus, button:focus {
+  outline: 3px solid rgba(78,84,200,0.18);
+}
+
+button {
+  background-color: #4e54c8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  padding: 0.75rem 1rem;
+  align-self: start;
+}
+
+button:hover {
+  background-color: #3c42a0;
+}
+
+/* ---------------------------
+   Footer
+   --------------------------- */
+footer {
+  flex-shrink: 0;
+  background-color: #4e54c8;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  width: 100%;
+}
+
+/* ---------------------------
+   Thème sombre
+   --------------------------- */
+body.dark-mode {
+  background: linear-gradient(to right, #171717, #2b2b2b);
+  color: #e9eefb;
+}
+
+body.dark-mode header {
+  background: linear-gradient(to right, #222428, #3b3e46);
+}
+
+body.dark-mode thead {
+  background-color: #3b3f73;
+}
+
+body.dark-mode th, body.dark-mode td {
+  border-color: #444;
+}
+
+body.dark-mode .menu a {
+  color: #cfe6ff;
+}
+
+body.dark-mode .menu a:hover {
+  background-color: #aaccff;
+  color: #101010;
+}
+
+body.dark-mode footer {
+  background-color: #111;
+}
+
+/* ---------------------------
+   Cadrans agrandis (Contact & Question)
+   --------------------------- */
+/* Classe : .form-card (appliquer autour du formulaire) */
+.form-card,
+.card {
+  max-width: 900px;
+  width: 100%;
+  margin: 1.25rem auto;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.96);
+  box-shadow: 0 8px 24px rgba(18,22,40,0.06);
+  box-sizing: border-box;
+}
+
+/* Variante sombre */
 body.dark-mode .form-card,
 body.dark-mode .card {
-  background: rgba(24,24,28,0.52) !important;
-  color: #eaf2ff !important;
-  box-shadow: 0 10px 26px rgba(0,0,0,0.45) !important;
+  background: rgba(24,24,28,0.48);
+  color: #eaf2ff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
 }
 
-/* Inputs et textarea agrandis forcés */
-body .form-card input[type="text"],
-body .form-card input[type="email"],
-body .form-card textarea,
-body .card input[type="text"],
-body .card input[type="email"],
-body .card textarea {
+/* Titres et labels */
+.form-card h2,
+.card h2 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.form-card label,
+.card label {
+  display: block;
+  margin: 0.35rem 0 0.5rem 0;
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
+/* Inputs et textarea agrandis pour .form-card */
+.form-card input[type="text"],
+.form-card input[type="email"],
+.form-card textarea,
+.card input[type="text"],
+.card input[type="email"],
+.card textarea {
+  width: 100%;
+  font-size: 1.05rem;
+  padding: 0.95rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #d0d0d6;
+  background: transparent;
+  color: inherit;
+}
+
+/* Hauteur du textarea augmentée */
+.form-card textarea,
+.card textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+/* Boutons dans les formulaires agrandis */
+.form-card button,
+.card button {
+  padding: 0.95rem 1.25rem;
+  font-size: 1.05rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Layout des champs côte à côte */
+.form-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.form-row .col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* ---------------------------
+   Règles de renforcement (si un autre CSS surcharge)
+   Coller ceci à la fin du fichier si nécessaire
+   --------------------------- */
+body .form-card.enforce,
+body .card.enforce {
+  max-width: 920px !important;
+  padding: 1.6rem 2rem !important;
+  border-radius: 14px !important;
+  box-shadow: 0 14px 34px rgba(18,22,40,0.08) !important;
+}
+
+body .form-card.enforce input,
+body .form-card.enforce textarea,
+body .card.enforce input,
+body .card.enforce textarea {
   font-size: 1.08rem !important;
   padding: 1.05rem 1.1rem !important;
   border-radius: 12px !important;
-  border: 1px solid #cfcfd6 !important;
-  background: transparent !important;
-  color: inherit !important;
 }
 
-/* Hauteur du textarea */
-body .form-card textarea,
-body .card textarea {
-  min-height: 180px !important;
-  resize: vertical !important;
-}
-
-/* Boutons */
-body .form-card button,
-body .card button {
-  padding: 1rem 1.4rem !important;
-  font-size: 1.06rem !important;
-  border-radius: 12px !important;
-}
-
-/* Layout des champs côte à côte (bureau) */
-body .form-row {
-  display: flex !important;
-  gap: 1rem !important;
-  align-items: flex-start !important;
-  margin-bottom: 1.1rem !important;
-}
-
-body .form-row .col {
-  flex: 1 1 0 !important;
-  min-width: 0 !important;
-}
-
-/* Mobile */
+/* ---------------------------
+   Responsive & accessibilité
+   --------------------------- */
 @media (max-width: 720px) {
-  body .form-card,
-  body .card {
-    padding: 1.1rem !important;
-    margin: 0.8rem !important;
-    border-radius: 10px !important;
-    width: calc(100% - 1.6rem) !important;
+  .header-top h1 { font-size: 1.35rem; }
+  #toggleTheme { width: 2.4rem; height: 2.4rem; font-size: 1.05rem; }
+  main { padding: 1rem; }
+  .menu { gap: 0.4rem; padding: 0.5rem; }
+
+  .form-card,
+  .card {
+    padding: 1rem;
+    margin: 0.75rem;
+    border-radius: 10px;
+    width: calc(100% - 1.6rem);
   }
 
-  body .form-card textarea,
-  body .card textarea {
-    min-height: 150px !important;
+  .form-card textarea,
+  .card textarea {
+    min-height: 140px;
   }
 
-  body .form-row {
-    flex-direction: column !important;
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-card h2,
+  .card h2 {
+    font-size: 1.15rem;
   }
 }
+
+/* High contrast preference */
+@media (prefers-contrast: high) {
+  .menu a { font-weight: 800; }
+  #toggleTheme { border-width: 1.5px; }
+}
+
+/* Note :
+   - Pour forcer l'application si un autre CSS a plus de spécificité,
+     ajoute la classe "enforce" sur le container <div class="form-card enforce">.
+   - Vérifie que le HTML contient bien <div class="form-card"> autour du formulaire.
+*/
