@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
   <style>
     .confirmation {
       display: none;
@@ -17,12 +18,22 @@
       text-align: center;
       border-radius: 8px;
     }
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9999;
+    .back-button {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .btn-retour {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .btn-retour:hover {
+      background-color: #388e3c;
     }
   </style>
 </head>
@@ -70,14 +81,16 @@
       <div class="confirmation" id="confirmationMessage">
         🎉 Merci pour votre message ! Je vous répondrai dès que possible.
       </div>
+
+      <div class="back-button">
+        <a href="index.html" class="btn-retour">← Retour à l’accueil</a>
+      </div>
     </div>
   </main>
 
   <footer>
     <p>&copy; 2025 - Mon Espace Étudiant</p>
   </footer>
-
-  <canvas id="confetti"></canvas>
 
   <script src="theme.js"></script>
   <script>
@@ -98,7 +111,13 @@
         if (response.ok) {
           form.reset();
           document.getElementById("confirmationMessage").style.display = "block";
-          launchConfetti();
+
+          const jsConfetti = new JSConfetti();
+          jsConfetti.addConfetti({
+            emojis: ['🎉'],
+            emojiSize: 40,
+            confettiNumber: 100,
+          });
         } else {
           alert("Une erreur est survenue. Veuillez réessayer.");
         }
@@ -107,70 +126,6 @@
         alert("Erreur réseau. Veuillez vérifier votre connexion.");
       });
     });
-
-    function launchConfetti() {
-      const canvas = document.getElementById("confetti");
-      const ctx = canvas.getContext("2d");
-
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-
-      resizeCanvas();
-      window.addEventListener("resize", resizeCanvas);
-
-      const confettiCount = 150;
-      const confetti = [];
-
-      for (let i = 0; i < confettiCount; i++) {
-        confetti.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height - canvas.height,
-          r: Math.random() * 6 + 4,
-          d: Math.random() * confettiCount,
-          color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-          tilt: Math.floor(Math.random() * 10) - 10,
-          tiltAngle: 0,
-          tiltAngleIncrement: Math.random() * 0.07 + 0.05
-        });
-      }
-
-      function drawConfetti() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        confetti.forEach(c => {
-          ctx.beginPath();
-          ctx.lineWidth = c.r;
-          ctx.strokeStyle = c.color;
-          ctx.moveTo(c.x + c.tilt + c.r / 2, c.y);
-          ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 2);
-          ctx.stroke();
-        });
-        updateConfetti();
-      }
-
-      function updateConfetti() {
-        confetti.forEach(c => {
-          c.tiltAngle += c.tiltAngleIncrement;
-          c.y += (Math.cos(c.d) + 3 + c.r / 2) / 2;
-          c.x += Math.sin(c.d);
-          c.tilt = Math.sin(c.tiltAngle) * 15;
-
-          if (c.y > canvas.height) {
-            c.y = -10;
-            c.x = Math.random() * canvas.width;
-          }
-        });
-      }
-
-      const interval = setInterval(drawConfetti, 20);
-
-      // ⏱️ Arrêt automatique après 5 secondes
-      setTimeout(() => {
-        clearInterval(interval);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }, 5000);
-    }
   </script>
 </body>
 </html>
