@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .confirmation {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e6ffe6;
+      border: 1px solid #4caf50;
+      color: #2e7d32;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 8px;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+  </style>
 </head>
 <body>
   <button id="toggleTheme" type="button" aria-label="Changer le thème">🌙</button>
@@ -29,7 +49,7 @@
     <div class="form-card">
       <h2>Me contacter</h2>
 
-      <form action="https://formspree.io/f/xblzzqpl" method="POST">
+      <form id="contactForm">
         <div class="form-row">
           <div class="col">
             <label for="name">Votre nom</label>
@@ -44,9 +64,12 @@
         <label for="message">Votre message</label>
         <textarea id="message" name="message" placeholder="Écrivez votre message ici..." required></textarea>
 
-        <input type="hidden" name="_redirect" value="merci.html" />
         <button type="submit">Envoyer</button>
       </form>
+
+      <div class="confirmation" id="confirmationMessage">
+        🎉 Merci pour votre message ! Je vous répondrai dès que possible.
+      </div>
     </div>
   </main>
 
@@ -54,6 +77,67 @@
     <p>&copy; 2025 - Mon Espace Étudiant</p>
   </footer>
 
+  <canvas id="confetti"></canvas>
+
   <script src="theme.js"></script>
-</body>
-</html>
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const data = new FormData(form);
+
+      fetch("https://formspree.io/f/xblzzqpl", {
+        method: "POST",
+        body: data,
+        headers: {
+          Accept: "application/json"
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          form.reset();
+          document.getElementById("confirmationMessage").style.display = "block";
+          launchConfetti();
+        } else {
+          alert("Une erreur est survenue. Veuillez réessayer.");
+        }
+      })
+      .catch(error => {
+        alert("Erreur réseau. Veuillez vérifier votre connexion.");
+      });
+    });
+
+    function launchConfetti() {
+      const canvas = document.getElementById("confetti");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const confettiCount = 150;
+      const confetti = [];
+
+      for (let i = 0; i < confettiCount; i++) {
+        confetti.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          r: Math.random() * 6 + 4,
+          d: Math.random() * confettiCount,
+          color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+          tilt: Math.floor(Math.random() * 10) - 10,
+          tiltAngle: 0,
+          tiltAngleIncrement: Math.random() * 0.07 + 0.05
+        });
+      }
+
+      function drawConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        confetti.forEach(c => {
+          ctx.beginPath();
+          ctx.lineWidth = c.r;
+          ctx.strokeStyle = c.color;
+          ctx.moveTo(c.x + c.tilt + c.r / 2, c.y);
+          ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 2);
+          ctx.stroke();
+        });
+        updateConf
