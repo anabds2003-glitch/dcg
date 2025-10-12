@@ -8,78 +8,14 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
       background-color: #f9f9f9;
       color: #333;
       transition: background-color 0.3s ease, color 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
     }
 
     body.dark-mode {
       background-color: #1e1e1e;
       color: #f0f0f0;
-    }
-
-    header, footer {
-      background-color: #4e54c8;
-      color: white;
-      padding: 1em;
-      text-align: center;
-      position: relative;
-    }
-
-    nav ul.menu {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 1.5em;
-      margin-top: 1em;
-    }
-
-    nav ul.menu li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    main {
-      padding: 2em;
-      max-width: 800px;
-      margin: auto;
-      flex: 1;
-    }
-
-    form input, form textarea {
-      width: 100%;
-      padding: 0.8em;
-      margin-bottom: 1em;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1em;
-    }
-
-    form button {
-      padding: 0.8em 1.2em;
-      background-color: #4e54c8;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1em;
-    }
-
-    #toggleTheme {
-      background: none;
-      border: none;
-      font-size: 1.8em;
-      cursor: pointer;
-      position: absolute;
-      top: 1em;
-      right: 1em;
     }
 
     body.dark-mode input,
@@ -99,54 +35,65 @@
     }
 
     body.dark-mode header,
+    body.dark-mode main,
     body.dark-mode footer {
-      background-color: #333;
-      color: #f0f0f0;
+      background-color: transparent;
+      color: inherit;
     }
 
-    #confirmationMessage {
-      margin-top: 2em;
-      color: green;
-      font-weight: bold;
-      display: none;
+    #toggleTheme {
+      background: none;
+      border: none;
+      font-size: 1.8em;
+      cursor: pointer;
+      margin-left: 1em;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Contact</h1>
-    <button id="toggleTheme">🌙</button>
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="agenda.html">Agenda</a></li>
-        <li><a href="matieres.html">Matières</a></li>
-        <li><a href="liens.html">Liens</a></li>
-        <li><a href="question.html">Question</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div class="page-container">
+    <header>
+      <h1>Contact</h1>
+      <button id="toggleTheme">🌙</button>
+      <nav>
+        <ul class="menu">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="agenda.html">Agenda</a></li>
+          <li><a href="matieres.html">Matières</a></li>
+          <li><a href="liens.html">Liens</a></li>
+          <li><a href="question.html">Question</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <main>
-    <h2>Formulaire de contact</h2>
-    <form id="contactForm" action="https://formspree.io/f/xblzzqpl" method="POST">
-      <input type="hidden" name="_subject" value="Nouveau message depuis le formulaire de contact" />
-      <input type="text" id="name" name="name" placeholder="Votre prénom" required />
-      <input type="email" id="email" name="email" placeholder="Votre email" required />
-      <textarea name="message" placeholder="Votre message" required></textarea>
-      <button type="submit">Envoyer</button>
-    </form>
-    <div id="confirmationMessage">🎉 Merci ! Ton message a bien été envoyé. Je réponds dans les meilleurs délais.</div>
-  </main>
+    <main>
+      <section>
+        <h2>Formulaire de contact</h2>
+        <form id="contactForm" action="https://formspree.io/f/xblzzqpl" method="POST">
+          <input type="hidden" name="_subject" value="Nouveau message depuis le formulaire de contact" />
 
-  <footer>
-    <p>&copy; 2025 - Mon Espace Étudiant</p>
-  </footer>
+          <input type="text" id="name" name="name" placeholder="Votre prénom" required />
+          <input type="email" id="email" name="email" placeholder="Votre email" required />
+          <textarea name="message" placeholder="Votre message" required></textarea>
+          <button type="submit">Envoyer</button>
+        </form>
+
+        <div id="confirmationMessage" style="display:none; margin-top:2em; color:green; font-weight:bold;">
+          🎉 Merci ! Ton message a bien été envoyé. Je réponds dans les meilleurs délais.
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 - Mon Espace Étudiant</p>
+    </footer>
+  </div>
+
+  <a href="index.html" class="btn-retour">⬅️ Accueil</a>
 
   <script>
+    // 🌗 Thème sombre avec icône dynamique
     const toggleTheme = document.getElementById("toggleTheme");
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") document.body.classList.add("dark-mode");
 
     function updateThemeIcon() {
       toggleTheme.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
@@ -154,33 +101,68 @@
 
     toggleTheme.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
-      localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
       updateThemeIcon();
     });
 
+    // Appliquer le thème sombre par défaut si l'utilisateur le préfère
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.body.classList.add("dark-mode");
+    }
     updateThemeIcon();
 
+    // 💾 Suggestion automatique des données enregistrées
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+
+    const savedName = localStorage.getItem("contactName");
+    const savedEmail = localStorage.getItem("contactEmail");
+
+    if (savedName) {
+      nameInput.value = savedName;
+      nameInput.placeholder = `Prénom (ex: ${savedName})`;
+    }
+    if (savedEmail) {
+      emailInput.value = savedEmail;
+      emailInput.placeholder = `Email (ex: ${savedEmail})`;
+    }
+
+    // 📬 Envoi du formulaire + confettis + sauvegarde
     const form = document.getElementById("contactForm");
     const confirmation = document.getElementById("confirmationMessage");
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       const data = new FormData(form);
+      const name = nameInput.value;
+      const email = emailInput.value;
+
+      localStorage.setItem("contactName", name);
+      localStorage.setItem("contactEmail", email);
 
       fetch(form.action, {
         method: "POST",
         body: data,
-        headers: { Accept: "application/json" }
+        headers: {
+          Accept: "application/json"
+        }
       }).then(response => {
         if (response.ok) {
           form.style.display = "none";
           confirmation.style.display = "block";
-          confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+          launchConfetti();
         } else {
           alert("❌ Une erreur est survenue. Réessaie plus tard.");
         }
       });
     });
+
+    function launchConfetti() {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
   </script>
 </body>
 </html>
