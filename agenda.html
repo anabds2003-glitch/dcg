@@ -10,8 +10,10 @@
   <header>
     <h1>Agenda</h1>
     <button id="toggleTheme" aria-label="Changer le thème">🌙</button>
-    <nav>
-      <ul class="menu">
+    <button id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">☰</button>
+    <div id="overlay" class="overlay"></div>
+    <nav id="menu" class="menu">
+      <ul>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="agenda.html" class="active">Agenda</a></li>
         <li><a href="matieres.html">Matières</a></li>
@@ -23,22 +25,16 @@
   </header>
 
   <main>
-    <p>Voici ton planning de la semaine avec les cours, devoirs et échéances.</p>
-
     <table class="agenda">
       <thead>
-        <tr>
-          <th>Jour</th>
-          <th>Heure</th>
-          <th>Activité</th>
-        </tr>
+        <tr><th>Jour</th><th>Heure</th><th>Activité</th></tr>
       </thead>
       <tbody>
         <tr><td>Lundi</td><td>9h - 12h</td><td>Droit des sociétés</td></tr>
         <tr><td>Mardi</td><td>14h - 17h</td><td>Comptabilité approfondie</td></tr>
         <tr><td>Mercredi</td><td>10h - 12h</td><td>Économie</td></tr>
         <tr><td>Jeudi</td><td>13h - 16h</td><td>Management</td></tr>
-        <tr><td>Vendredi</td><td>9h - 11h</td><td>Révision + devoir maison à rendre</td></tr>
+        <tr><td>Vendredi</td><td>9h - 11h</td><td>Révision + devoir maison</td></tr>
       </tbody>
     </table>
   </main>
