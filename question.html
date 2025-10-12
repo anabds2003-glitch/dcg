@@ -9,10 +9,12 @@
 <body>
   <header>
     <h1>Poser une question</h1>
-    <button id="toggleTheme" aria-label="Changer le thème">🌙</button>
-    <button id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">☰</button>
+    <button id="toggleTheme" type="button" aria-label="Changer le thème">🌙</button>
+    <button id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+      <span id="burger-icon">☰</span> Menu
+    </button>
     <div id="overlay" class="overlay"></div>
-    <nav>
+    <nav role="navigation">
       <ul class="menu" id="menu">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="agenda.html">Agenda</a></li>
@@ -25,14 +27,12 @@
   </header>
 
   <main>
-    <section>
-      <h2>Formulaire de question</h2>
-      <form>
-        <input type="text" placeholder="Votre question" aria-label="Votre question" required />
-        <textarea placeholder="Détaillez votre demande" aria-label="Détail de la question" required></textarea>
-        <button type="submit" aria-label="Envoyer la question">Envoyer</button>
-      </form>
-    </section>
+    <h2>Formulaire de question</h2>
+    <form>
+      <input type="text" placeholder="Votre question" required />
+      <textarea placeholder="Détaillez votre demande" required></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
   </main>
 
   <footer>
