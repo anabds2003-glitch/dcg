@@ -1,27 +1,16 @@
 const toggleTheme = document.getElementById("toggleTheme");
 const savedTheme = localStorage.getItem("theme");
 
-if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+if (savedTheme === "dark") {
   document.body.classList.add("dark-mode");
 }
 
-function updateThemeIcon() {
-  if (toggleTheme) {
-    toggleTheme.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
-  }
-}
+toggleTheme.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+  localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+  toggleTheme.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+});
 
-if (toggleTheme) {
-  toggleTheme.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-    updateThemeIcon();
-  });
-}
-
-updateThemeIcon();
-
-// 🍔 Menu burger + overlay + accessibilité + icône animée
 const burger = document.getElementById("burger");
 const menu = document.getElementById("menu");
 const overlay = document.getElementById("overlay");
@@ -31,32 +20,13 @@ function toggleMenu(open) {
   menu.classList.toggle("open", open);
   overlay.classList.toggle("show", open);
   burger.setAttribute("aria-expanded", open);
-  if (burgerIcon) {
-    burgerIcon.textContent = open ? "✖️" : "☰";
-  }
+  burgerIcon.textContent = open ? "✖️" : "☰";
 }
 
-if (burger && menu && overlay) {
-  burger.addEventListener("click", () => {
-    const isOpen = !menu.classList.contains("open");
-    toggleMenu(isOpen);
-  });
+burger.addEventListener("click", () => {
+  toggleMenu(!menu.classList.contains("open"));
+});
 
-  burger.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      burger.click();
-    }
-  });
-
-  overlay.addEventListener("click", () => {
-    toggleMenu(false);
-  });
-
-  const links = menu.querySelectorAll("a");
-  links.forEach(link => {
-    link.addEventListener("click", () => {
-      toggleMenu(false);
-    });
-  });
-}
+overlay.addEventListener("click", () => {
+  toggleMenu(false);
+});
