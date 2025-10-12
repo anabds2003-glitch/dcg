@@ -14,12 +14,13 @@
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-retour:hover,
 .btn-retour:focus {
   background-color: #388e3c;
+  transform: translateY(-2px);
   outline: none;
 }
 
@@ -29,7 +30,8 @@ body.dark-mode .btn-retour {
   color: #fff;
 }
 
-body.dark-mode .btn-retour:hover {
+body.dark-mode .btn-retour:hover,
+body.dark-mode .btn-retour:focus {
   background-color: #43a047;
 }
 
