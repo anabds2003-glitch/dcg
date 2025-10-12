@@ -9,12 +9,13 @@
 <body>
   <header>
     <h1>Liens utiles</h1>
-    <button id="toggleTheme">🌙</button>
+    <button id="toggleTheme" aria-label="Changer le thème">🌙</button>
     <nav>
       <ul class="menu">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="agenda.html">Agenda</a></li>
         <li><a href="matieres.html">Matières</a></li>
+        <li><a href="liens.html" class="active">Liens</a></li>
         <li><a href="question.html">Question</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -22,11 +23,14 @@
   </header>
 
   <main>
-    <ul>
-      <li><a href="https://www.service-public.fr/">Service Public</a></li>
-      <li><a href="https://www.legifrance.gouv.fr/">Legifrance</a></li>
-      <li><a href="https://www.impots.gouv.fr/">Impôts</a></li>
-      <!-- Ajoute tes autres liens ici -->
+    <p>Voici quelques liens utiles pour tes démarches et recherches :</p>
+    <ul class="liens-utiles">
+      <li><a href="https://www.service-public.fr/" target="_blank">Service Public</a></li>
+      <li><a href="https://www.legifrance.gouv.fr/" target="_blank">Legifrance</a></li>
+      <li><a href="https://www.impots.gouv.fr/" target="_blank">Impôts</a></li>
+      <li><a href="https://www.urssaf.fr/" target="_blank">URSSAF</a></li>
+      <li><a href="https://www.insee.fr/" target="_blank">INSEE</a></li>
+      <!-- Tu peux ajouter d'autres liens ici -->
     </ul>
   </main>
 
@@ -34,22 +38,6 @@
     <p>&copy; 2025 - Mon Espace Étudiant</p>
   </footer>
 
-  <script>
-    const toggleTheme = document.getElementById("toggleTheme");
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") document.body.classList.add("dark-mode");
-
-    function updateThemeIcon() {
-      toggleTheme.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
-    }
-
-    toggleTheme.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-      updateThemeIcon();
-    });
-
-    updateThemeIcon();
-  </script>
+  <script src="theme.js"></script>
 </body>
 </html>
